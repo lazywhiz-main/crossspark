@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿する - CROSS SPARK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: #f0f0f0;
+            color: #000000;
+            line-height: 1.4;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: #000000;
+            padding: 16px 0;
+            box-shadow: 4px 4px 0px #ff3366;
+            border-bottom: 3px solid #ff3366;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ff3366;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 0px #ffffff;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 6px;
+        }
+
+        .nav-item {
+            background: #ffff00;
+            border: 2px solid #000000;
+            padding: 8px 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #000000;
+            box-shadow: 2px 2px 0px #000000;
+            transition: all 0.1s ease;
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+
+        .nav-item:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px #000000;
+            background: #00ff88;
+        }
+
+        .nav-item.active {
+            background: #00ff88;
+        }
+
+        /* ページヘッダー */
+        .page-header {
+            background: #000000;
+            color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px #ff3366;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffff00;
+        }
+
+        /* メインコンテンツ */
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* 投稿タイプ選択 */
+        .submit-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .option-card {
+            background: #ffffff;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px #000000;
+        }
+
+        .option-card.new-topic {
+            background: #ffff00;
+        }
+
+        .option-card.join-topic {
+            background: #00ff88;
+        }
+
+        .option-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .option-title {
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .option-description {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        /* フォームセクション */
+        .form-section {
+            background: #ffffff;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            padding: 40px;
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #000000;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 3px solid #000000;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 3px 3px 0px #000000;
+            background: #ffffff;
+            outline: none;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            background: #ffff00;
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #000000;
+        }
+
+        .form-textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .profession-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .profession-option {
+            padding: 8px 12px;
+            border: 2px solid #000000;
+            background: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.1s ease;
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        .profession-option:hover,
+        .profession-option.selected {
+            background: #ff3366;
+            color: #ffffff;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000000;
+        }
+
+        .topics-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 3px solid #000000;
+            background: #f0f0f0;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .topic-item {
+            background: #ffffff;
+            border: 2px solid #000000;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        .topic-item:hover,
+        .topic-item.selected {
+            background: #00ff88;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000000;
+        }
+
+        .topic-title {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .topic-meta {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666666;
+        }
+
+        .submit-button {
+            background: #ff3366;
+            color: #ffffff;
+            padding: 18px 40px;
+            border: 4px solid #000000;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 6px 6px 0px #000000;
+            transition: all 0.2s ease;
+            font-size: 16px;
+            letter-spacing: 2px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .submit-button:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px #000000;
+        }
+
+        .back-button {
+            background: #ffffff;
+            color: #000000;
+            padding: 12px 24px;
+            border: 3px solid #000000;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #000000;
+            transition: all 0.1s ease;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            background: #ffff00;
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #000000;
+        }
+
+        /* ガイドライン */
+        .guidelines {
+            background: #00ff88;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .guidelines-title {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .guidelines-list {
+            list-style: none;
+        }
+
+        .guidelines-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .guidelines-list li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            font-size: 16px;
+        }
+
+        /* フッター */
+        .footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 4px solid #ff3366;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .submit-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .profession-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">CROSS SPARK</div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">HOME</a>
+                <a href="#" class="nav-item">BUG REPORTS</a>
+                <a href="#" class="nav-item active">SUBMIT</a>
+                <a href="#" class="nav-item">ABOUT</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <h1 class="page-title">SUBMIT</h1>
+        <p class="page-subtitle">化学反応を起こそう！</p>
+    </section>
+
+    <!-- メインコンテンツ -->
+    <main class="main-container">
+        <!-- 投稿オプション選択 -->
+        <div id="options-section">
+            <div class="submit-options">
+                <div class="option-card new-topic" onclick="showForm('new-topic')">
+                    <span class="option-icon">🚀</span>
+                    <h2 class="option-title">新しい話題を提案</h2>
+                    <p class="option-description">
+                        みんなで議論したい新しいテーマを提案して、異業種の視点を集めよう
+                    </p>
+                </div>
+                <div class="option-card join-topic" onclick="showForm('join-topic')">
+                    <span class="option-icon">⚡</span>
+                    <h2 class="option-title">既存の話題に参加</h2>
+                    <p class="option-description">
+                        進行中のバグレポートにあなたの業種の視点を追加しよう
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 新しい話題フォーム -->
+        <div id="new-topic-form" class="form-section">
+            <button class="back-button" onclick="showOptions()">← 戻る</button>
+            <h2 class="section-title">新しい話題を提案</h2>
+            
+            <div class="guidelines">
+                <h3 class="guidelines-title">投稿ガイドライン</h3>
+                <ul class="guidelines-list">
+                    <li>哲学的で普遍的なテーマを選ぼう</li>
+                    <li>業種を問わず議論できる内容にしよう</li>
+                    <li>正解のない、多様な視点が価値あるテーマを</li>
+                    <li>具体的すぎず、抽象的すぎないバランスを</li>
+                </ul>
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label class="form-label">話題のタイトル</label>
+                    <input type="text" class="form-input" placeholder="例：美しさとは何か？">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">話題の説明</label>
+                    <textarea class="form-textarea" placeholder="この話題について詳しく説明してください。なぜこのテーマが重要だと思うのか、どんな視点からの意見を聞きたいかなど..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">あなたの業種</label>
+                    <div class="profession-grid">
+                        <div class="profession-option">エンジニア</div>
+                        <div class="profession-option">デザイナー</div>
+                        <div class="profession-option">料理人</div>
+                        <div class="profession-option">教師</div>
+                        <div class="profession-option">マーケター</div>
+                        <div class="profession-option">医師</div>
+                        <div class="profession-option">アーティスト</div>
+                        <div class="profession-option">その他</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">あなたの視点</label>
+                    <textarea class="form-textarea" placeholder="この話題に対するあなたの業種・専門分野からの視点や意見を書いてください..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">話題を投稿する</button>
+            </form>
+        </div>
+
+        <!-- 既存話題参加フォーム -->
+        <div id="join-topic-form" class="form-section">
+            <button class="back-button" onclick="showOptions()">← 戻る</button>
+            <h2 class="section-title">既存の話題に参加</h2>
+
+            <div class="form-group">
+                <label class="form-label">参加したい話題を選択</label>
+                <div class="topics-list">
+                    <div class="topic-item">
+                        <div class="topic-title">効率的なコミュニケーションとは？</div>
+                        <div class="topic-meta">4業種参加中 - 実験進行中</div>
+                    </div>
+                    <div class="topic-item">
+                        <div class="topic-title">時間管理の極意とは？</div>
+                        <div class="topic-meta">3業種参加中 - 実験進行中</div>
+                    </div>
+                    <div class="topic-item">
+                        <div class="topic-title">リーダーシップの本質とは？</div>
+                        <div class="topic-meta">2業種参加中 - 参加者募集</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">あなたの業種</label>
+                <div class="profession-grid">
+                    <div class="profession-option">エンジニア</div>
+                    <div class="profession-option">デザイナー</div>
+                    <div class="profession-option">料理人</div>
+                    <div class="profession-option">教師</div>
+                    <div class="profession-option">マーケター</div>
+                    <div class="profession-option">医師</div>
+                    <div class="profession-option">アーティスト</div>
+                    <div class="profession-option">その他</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">あなたの意見</label>
+                <textarea class="form-textarea" placeholder="選択した話題に対する、あなたの業種・専門分野からの視点や意見を書いてください..."></textarea>
+            </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-text">
+            CROSS SPARK - 異業種の化学反応から生まれる新しい発見
+        </div>
+    </footer>
+
+    <script>
+        // ページ遷移制御
+        function showForm(type) {
+            document.getElementById('options-section').style.display = 'none';
+            
+            if (type === 'new-topic') {
+                document.getElementById('new-topic-form').classList.add('active');
+            } else if (type === 'join-topic') {
+                document.getElementById('join-topic-form').classList.add('active');
+            }
+        }
+
+        function showOptions() {
+            document.getElementById('options-section').style.display = 'block';
+            document.getElementById('new-topic-form').classList.remove('active');
+            document.getElementById('join-topic-form').classList.remove('active');
+        }
+
+        // 業種選択
+        document.addEventListener('DOMContentLoaded', function() {
+            const professionOptions = document.querySelectorAll('.profession-option');
+            
+            professionOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // 同じグループ内の他の選択を解除
+                    const group = this.parentElement;
+                    group.querySelectorAll('.profession-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // クリックされた要素を選択
+                    this.classList.add('selected');
+                });
+            });
+
+            // 話題選択
+            const topicItems = document.querySelectorAll('.topic-item');
+            
+            topicItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 他の選択を解除
+                    topicItems.forEach(topic => {
+                        topic.classList.remove('selected');
+                    });
+                    
+                    // クリックされた要素を選択
+                    this.classList.add('selected');
+                });
+            });
+
+            // フォーム送信
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('投稿が完了しました！レビュー後に公開されます。');
+                    showOptions();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

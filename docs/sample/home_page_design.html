@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROSS SPARK - 異業種の化学反応メディア</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: #f0f0f0;
+            color: #000000;
+            line-height: 1.4;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: #000000;
+            padding: 16px 0;
+            box-shadow: 4px 4px 0px #ff3366;
+            border-bottom: 3px solid #ff3366;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ff3366;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 0px #ffffff;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 6px;
+        }
+
+        .nav-item {
+            background: #ffff00;
+            border: 2px solid #000000;
+            padding: 8px 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #000000;
+            box-shadow: 2px 2px 0px #000000;
+            transition: all 0.1s ease;
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+
+        .nav-item:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px #000000;
+            background: #00ff88;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 6px solid #ff3366;
+        }
+
+        .hero-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0px #ff3366;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffff00;
+        }
+
+        /* カテゴリーバー */
+        .category-bar {
+            background: #00ff88;
+            padding: 15px 0;
+            border-bottom: 3px solid #000000;
+        }
+
+        .category-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-link {
+            background: #000000;
+            color: #ffffff;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 12px;
+            border: 2px solid #000000;
+            transition: all 0.1s ease;
+            letter-spacing: 1px;
+            box-shadow: 2px 2px 0px #ffff00;
+        }
+
+        .category-link:hover {
+            background: #ffff00;
+            color: #000000;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #ff3366;
+        }
+
+        /* メインコンテンツ */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        /* 注目のバグレポート（ヒーロー記事スタイル）*/
+        .featured-report {
+            margin-bottom: 30px;
+        }
+
+        .featured-card {
+            background: #ffffff;
+            border: 4px solid #000000;
+            box-shadow: 8px 8px 0px #000000;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .featured-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 11px 11px 0px #000000;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 250px;
+            background: #ff3366;
+            border: 3px solid #000000;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 2px 2px 0px #000000;
+        }
+
+        .featured-category {
+            background: #ffff00;
+            color: #000000;
+            padding: 6px 16px;
+            border: 2px solid #000000;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        .featured-title {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            color: #000000;
+        }
+
+        .featured-excerpt {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .featured-participants {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .participant-tag {
+            padding: 4px 12px;
+            border: 2px solid #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 1px;
+            box-shadow: 1px 1px 0px #000000;
+        }
+
+        .participant-tag.engineer { background: #00aaff; color: #ffffff; }
+        .participant-tag.designer { background: #ff3366; color: #ffffff; }
+        .participant-tag.chef { background: #00ff88; color: #000000; }
+        .participant-tag.teacher { background: #ff8800; color: #ffffff; }
+        .participant-tag.marketer { background: #aa00ff; color: #ffffff; }
+
+        .featured-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #666666;
+        }
+
+        .read-more-btn {
+            background: #000000;
+            color: #ffffff;
+            padding: 15px 30px;
+            border: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px #ff3366;
+            transition: all 0.1s ease;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .read-more-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #ff3366;
+        }
+
+        /* 最新バグレポート（記事リスト形式）*/
+        .latest-reports {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .report-card {
+            background: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 20px;
+            transition: all 0.1s ease;
+            cursor: pointer;
+        }
+
+        .report-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #000000;
+        }
+
+        .report-image {
+            width: 100%;
+            height: 120px;
+            border: 2px solid #000000;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            color: #000000;
+        }
+
+        .report-image.discovery { background: #ff3366; color: #ffffff; }
+        .report-image.success { background: #00ff88; color: #000000; }
+        .report-image.learning { background: #aa00ff; color: #ffffff; }
+        .report-image.experimental { background: #ffff00; color: #000000; }
+
+        .report-category {
+            padding: 4px 12px;
+            border: 2px solid #000000;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 10px;
+            display: inline-block;
+            margin-bottom: 10px;
+            box-shadow: 1px 1px 0px #000000;
+        }
+
+        .category-experimental { background: #ffff00; color: #000000; }
+        .category-success { background: #00ff88; color: #000000; }
+        .category-discovery { background: #ff3366; color: #ffffff; }
+        .category-learning { background: #aa00ff; color: #ffffff; }
+
+        .report-title {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+
+        .report-excerpt {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #666666;
+        }
+
+        /* サイドバー */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-section {
+            background: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 20px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #000000;
+            padding-bottom: 10px;
+        }
+
+        .trending-item {
+            padding: 15px 0;
+            border-bottom: 2px solid #f0f0f0;
+            transition: all 0.1s ease;
+            cursor: pointer;
+        }
+
+        .trending-item:hover {
+            background: #ffff00;
+            margin: 0 -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .trending-number {
+            background: #000000;
+            color: #ffffff;
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .trending-title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .quick-access {
+            background: #00ff88;
+            border: 3px solid #000000;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 4px 4px 0px #000000;
+        }
+
+        .quick-access-title {
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .access-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .access-btn {
+            background: #000000;
+            color: #ffffff;
+            padding: 8px 16px;
+            border: 2px solid #ff3366;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #ff3366;
+            transition: all 0.1s ease;
+            font-size: 11px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .access-btn:hover {
+            background: #ff3366;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #ffff00;
+        }
+
+        /* 統計セクション（サイドバー内）*/
+        .stats-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-mini {
+            text-align: center;
+            padding: 10px;
+            border: 2px solid #000000;
+            background: #f9f9f9;
+        }
+
+        .stat-mini-number {
+            font-size: 18px;
+            font-weight: 900;
+            color: #ff3366;
+            display: block;
+        }
+
+        .stat-mini-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #666666;
+        }
+
+        /* 統計セクション（簡潔に）*/
+        .stats-section {
+            background: #000000;
+            color: #ffffff;
+            padding: 30px;
+            text-align: center;
+            border: 4px solid #ff3366;
+            box-shadow: 6px 6px 0px #ff3366;
+            margin-bottom: 40px;
+        }
+
+        .stats-title {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #ffff00;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            padding: 12px;
+            border: 2px solid #ffff00;
+            background: rgba(255, 255, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 900;
+            display: block;
+            color: #ffff00;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* 下部CTA（ヒーローの内容を移動）*/
+        .bottom-cta {
+            background: #000000;
+            color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .bottom-cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .bottom-cta-title {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0px #ff3366;
+        }
+
+        .bottom-cta-subtitle {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #ffff00;
+        }
+
+        .bottom-cta-description {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .main-cta-button {
+            background: #ff3366;
+            color: #ffffff;
+            padding: 20px 40px;
+            border: 4px solid #ffffff;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 18px;
+            letter-spacing: 2px;
+            box-shadow: 6px 6px 0px #ffff00;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .main-cta-button:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px #ffff00;
+        }
+
+        /* フッター */
+        .footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px 0;
+            border-top: 4px solid #ff3366;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .hero-title {
+                font-size: 28px;
+            }
+            
+            .featured-title {
+                font-size: 24px;
+            }
+            
+            .bottom-cta-title {
+                font-size: 32px;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">CROSS SPARK</div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">HOME</a>
+                <a href="#" class="nav-item">BUG REPORTS</a>
+                <a href="#" class="nav-item">SUBMIT</a>
+                <a href="#" class="nav-item">ABOUT</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">CROSS SPARK</h1>
+            <p class="hero-subtitle">異業種の化学反応メディア</p>
+        </div>
+    </section>
+
+    <!-- カテゴリーバー -->
+    <div class="category-bar">
+        <div class="category-container">
+            <a href="#" class="category-link">実験進行中</a>
+            <a href="#" class="category-link">爆発的成果</a>
+            <a href="#" class="category-link">予想外の発見</a>
+            <a href="#" class="category-link">失敗からの学び</a>
+            <a href="#" class="category-link">全て見る</a>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <main class="main-container">
+        <div class="content-area">
+            <!-- 注目のバグレポート -->
+            <section class="featured-report">
+                <article class="featured-card">
+                    <div class="featured-image">SPARK</div>
+                    <div class="featured-category">予想外の発見</div>
+                    <h1 class="featured-title">美しさとは何か？</h1>
+                    <p class="featured-excerpt">
+                        エンジニア、デザイナー、料理人、教師、マーケター。5つの異なる業種が語る「美」の定義から見えてきた驚きの共通点とは？すべての業種が「調和・バランス」について言及し、エンジニアの「無駄がない」と料理人の「素材を活かす」が本質的に同じことを表現していることが判明。
+                    </p>
+                    <div class="featured-participants">
+                        <span class="participant-tag engineer">エンジニア</span>
+                        <span class="participant-tag designer">デザイナー</span>
+                        <span class="participant-tag chef">料理人</span>
+                        <span class="participant-tag teacher">教師</span>
+                        <span class="participant-tag marketer">マーケター</span>
+                    </div>
+                    <div class="featured-meta">
+                        <span>5業種参加</span>
+                        <span>2024.01.15</span>
+                        <span>1,247 閲覧</span>
+                    </div>
+                    <button class="read-more-btn">詳細を読む</button>
+                </article>
+            </section>
+
+            <!-- 最新バグレポート -->
+            <section class="latest-reports">
+                <article class="report-card">
+                    <div class="report-image success">SUCCESS</div>
+                    <div class="report-category category-success">爆発的成果</div>
+                    <h2 class="report-title">創造性を育む環境とは？</h2>
+                    <p class="report-excerpt">
+                        アーティスト、プログラマー、シェフ、建築家が考える「創造的な空間」から見えてきた共通点。物理的環境だけでなく、心理的安全性についても議論が展開...
+                    </p>
+                    <div class="report-meta">
+                        <span>4業種参加</span>
+                        <span>2024.01.10</span>
+                    </div>
+                </article>
+
+                <article class="report-card">
+                    <div class="report-image learning">LEARN</div>
+                    <div class="report-category category-learning">失敗からの学び</div>
+                    <h2 class="report-title">失敗をどう捉えるか？</h2>
+                    <p class="report-excerpt">
+                        スタートアップCEO、研究者、スポーツコーチ、パティシエが語る失敗観。「失敗は成功の母」は本当か？各業界の失敗との向き合い方から見えた新たな視点...
+                    </p>
+                    <div class="report-meta">
+                        <span>4業種参加</span>
+                        <span>2024.01.08</span>
+                    </div>
+                </article>
+
+                <article class="report-card">
+                    <div class="report-image discovery">TEAM</div>
+                    <div class="report-category category-discovery">予想外の発見</div>
+                    <h2 class="report-title">チームワークの本質とは？</h2>
+                    <p class="report-excerpt">
+                        オーケストラ指揮者、サッカー監督、外科チーム、開発チームリーダーが語るチームマネジメント。音楽とスポーツと医療とITに共通する意外な法則...
+                    </p>
+                    <div class="report-meta">
+                        <span>4業種参加</span>
+                        <span>2024.01.03</span>
+                    </div>
+                </article>
+
+                <article class="report-card">
+                    <div class="report-image experimental">COMM</div>
+                    <div class="report-category category-experimental">実験進行中</div>
+                    <h2 class="report-title">効率的なコミュニケーションとは？</h2>
+                    <p class="report-excerpt">
+                        営業、エンジニア、医師、保育士が語る「伝える技術」の違い。同じ「伝える」でも業界によってこんなに違うなんて...現在も議論継続中！
+                    </p>
+                    <div class="report-meta">
+                        <span>4業種参加中</span>
+                        <span>2024.01.12</span>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- サイドバー -->
+        <aside class="sidebar">
+            <!-- 人気記事 -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">人気のバグレポート</h3>
+                <div class="trending-item">
+                    <span class="trending-number">1</span>
+                    <div class="trending-title">デザイナーと料理人が語る「美しさ」の共通点</div>
+                </div>
+                <div class="trending-item">
+                    <span class="trending-number">2</span>
+                    <div class="trending-title">エンジニアと教師の「問題解決」アプローチ</div>
+                </div>
+                <div class="trending-item">
+                    <span class="trending-number">3</span>
+                    <div class="trending-title">営業と医師が考える「コミュニケーション」</div>
+                </div>
+                <div class="trending-item">
+                    <span class="trending-number">4</span>
+                    <div class="trending-title">起業家とシェフの「創造性」への取り組み</div>
+                </div>
+                <div class="trending-item">
+                    <span class="trending-number">5</span>
+                    <div class="trending-title">建築家とプログラマーの「設計思想」</div>
+                </div>
+            </div>
+
+            <!-- カテゴリー別アクセス -->
+            <div class="quick-access">
+                <h3 class="quick-access-title">カテゴリー別</h3>
+                <div class="access-buttons">
+                    <a href="#" class="access-btn">予想外の発見</a>
+                    <a href="#" class="access-btn">爆発的成果</a>
+                    <a href="#" class="access-btn">実験進行中</a>
+                    <a href="#" class="access-btn">失敗からの学び</a>
+                </div>
+                <div class="stats-mini">
+                    <div class="stat-mini">
+                        <span class="stat-mini-number">47</span>
+                        <div class="stat-mini-label">レポート</div>
+                    </div>
+                    <div class="stat-mini">
+                        <span class="stat-mini-number">23</span>
+                        <div class="stat-mini-label">業種</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 業種別アクセス -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">業種別で探す</h3>
+                <div class="trending-item">
+                    <div class="trending-title">🔧 エンジニアの視点を見る</div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-title">🎨 デザイナーの視点を見る</div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-title">👨‍🍳 料理人の視点を見る</div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-title">📚 教師の視点を見る</div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-title">📈 マーケターの視点を見る</div>
+                </div>
+            </div>
+
+            <!-- 最新コメント -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">読者の反応</h3>
+                <div class="trending-item">
+                    <div style="font-weight: 900; font-size: 12px; margin-bottom: 5px;">建築家_YUKI:</div>
+                    <div style="font-size: 12px;">"料理人さんの「素材を活かす」に深く共感..."</div>
+                </div>
+                <div class="trending-item">
+                    <div style="font-weight: 900; font-size: 12px; margin-bottom: 5px;">音楽家_TAKE:</div>
+                    <div style="font-size: 12px;">"デザイナーの「余白」は音楽の休符と同じ..."</div>
+                </div>
+                <div class="trending-item">
+                    <div style="font-weight: 900; font-size: 12px; margin-bottom: 5px;">起業家_CEO:</div>
+                    <div style="font-size: 12px;">"ビジネスモデルにも美しさがある..."</div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- 統計セクション -->
+    <section class="stats-section">
+        <h2 class="stats-title">CROSS SPARKの化学反応</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">47</span>
+                <div class="stat-label">バグレポート</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">156</span>
+                <div class="stat-label">参加者</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">23</span>
+                <div class="stat-label">業種</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">89</span>
+                <div class="stat-label">新発見</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下部メインCTA -->
+    <section class="bottom-cta">
+        <div class="bottom-cta-container">
+            <h2 class="bottom-cta-title">異業種の化学反応</h2>
+            <p class="bottom-cta-subtitle">バグを起こしたい！</p>
+            <p class="bottom-cta-description">
+                エンジニア、デザイナー、料理人、教師...異なるスキルセットを持つ人々が一つの話題について語るとき、<br>
+                そこには予想もしない発見と創造的な化学反応が生まれる。
+            </p>
+            <a href="#" class="main-cta-button">今すぐ参加する</a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-text">
+                CROSS SPARK - 異業種の化学反応から生まれる新しい発見
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // BRUTAL MEDIA風のカオスインタラクション
+        document.addEventListener('DOMContentLoaded', function() {
+            // ランダムなカオス効果
+            const chaosElements = document.querySelectorAll('.report-card, .trending-item, .featured-card');
+            
+            chaosElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    if (this.classList.contains('featured-card')) {
+                        // フィーチャーカードは軽めの動き
+                        this.style.transform = `translate(-${Math.random() * 2}px, -${Math.random() * 2}px)`;
+                    } else {
+                        // その他はよりランダムに
+                        this.style.transform = `translate(-${Math.random() * 3}px, -${Math.random() * 3}px) rotate(${Math.random() * 1 - 0.5}deg)`;
+                    }
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translate(0, 0) rotate(0deg)';
+                });
+            });
+
+            // 画像プレースホルダーのランダム変化
+            const images = document.querySelectorAll('.featured-image, .report-image');
+            images.forEach(img => {
+                img.addEventListener('mouseenter', function() {
+                    const texts = ['CHAOS', 'SPARK', 'BOOM', 'WOW', 'BANG', 'ZAP'];
+                    if (this.classList.contains('featured-image')) {
+                        this.textContent = texts[Math.floor(Math.random() * texts.length)];
+                    }
+                });
+                
+                img.addEventListener('mouseleave', function() {
+                    if (this.classList.contains('featured-image')) {
+                        this.textContent = 'SPARK';
+                    }
+                });
+            });
+
+            // サイドバーボタンのホバーエフェクト
+            const accessButtons = document.querySelectorAll('.access-btn');
+            accessButtons.forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = `translate(-${Math.random() * 2}px, -${Math.random() * 2}px)`;
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translate(-1px, -1px)';
+                });
+            });
+
+            // 記事カードのクリック（記事詳細へ）
+            const reportCards = document.querySelectorAll('.report-card, .featured-card');
+            reportCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // 実際の実装では記事詳細ページへ遷移
+                    const title = this.querySelector('.report-title, .featured-title').textContent;
+                    alert(`「${title}」の詳細ページに移動します！`);
+                });
+            });
+
+            // 人気記事・業種別リンクのクリック
+            const trendingItems = document.querySelectorAll('.trending-item');
+            trendingItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.trending-title').textContent;
+                    alert(`「${title}」の関連記事一覧に移動します！`);
+                });
+            });
+
+            // カテゴリーボタンのクリック
+            accessButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.textContent;
+                    alert(`「${category}」のバグレポート一覧に移動します！`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

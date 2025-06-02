@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美しさとは何か？ - CROSS SPARK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: #f0f0f0;
+            color: #000000;
+            line-height: 1.4;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: #000000;
+            padding: 16px 0;
+            box-shadow: 4px 4px 0px #ff3366;
+            border-bottom: 3px solid #ff3366;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ff3366;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 0px #ffffff;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 6px;
+        }
+
+        .nav-item {
+            background: #ffff00;
+            border: 2px solid #000000;
+            padding: 8px 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #000000;
+            box-shadow: 2px 2px 0px #000000;
+            transition: all 0.1s ease;
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+
+        .nav-item:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px #000000;
+            background: #00ff88;
+        }
+
+        /* パンくずリスト */
+        .breadcrumb {
+            background: #ffffff;
+            border-bottom: 2px solid #000000;
+            padding: 15px 0;
+        }
+
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .breadcrumb a {
+            color: #666666;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: #ff3366;
+        }
+
+        /* メインコンテンツ */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+
+        /* 記事ヘッダー */
+        .article-header {
+            background: #ffffff;
+            border: 4px solid #000000;
+            box-shadow: 8px 8px 0px #000000;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .article-category {
+            background: #ff3366;
+            color: #ffffff;
+            padding: 8px 20px;
+            border: 3px solid #000000;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 3px 3px 0px #000000;
+        }
+
+        .article-title {
+            font-size: 48px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .article-subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #666666;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #666666;
+        }
+
+        /* 参加者セクション */
+        .participants {
+            background: #ffff00;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .participants-title {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .participant-list {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .participant {
+            padding: 10px 20px;
+            border: 2px solid #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            box-shadow: 2px 2px 0px #000000;
+            transition: all 0.1s ease;
+        }
+
+        .participant:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #000000;
+        }
+
+        .participant.engineer { background: #00aaff; color: #ffffff; }
+        .participant.designer { background: #ff3366; color: #ffffff; }
+        .participant.chef { background: #00ff88; color: #000000; }
+        .participant.teacher { background: #ff8800; color: #ffffff; }
+        .participant.marketer { background: #aa00ff; color: #ffffff; }
+
+        /* 意見セクション */
+        .opinions-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .opinion-card {
+            background: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 30px;
+            margin-bottom: 25px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .opinion-card:nth-child(2) { transform: rotate(-0.8deg); margin-right: 15px; }
+        .opinion-card:nth-child(3) { transform: rotate(0.5deg); margin-left: 20px; }
+        .opinion-card:nth-child(4) { transform: rotate(-0.3deg); margin-right: 10px; }
+        .opinion-card:nth-child(5) { transform: rotate(0.7deg); margin-left: 15px; }
+        .opinion-card:nth-child(6) { transform: rotate(-0.6deg); margin-right: 5px; }
+
+        .opinion-card:hover {
+            transform: rotate(0deg) translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #000000;
+            z-index: 10;
+        }
+
+        .opinion-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profession-tag {
+            padding: 6px 15px;
+            border: 2px solid #000000;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 11px;
+            margin-right: 20px;
+            box-shadow: 1px 1px 0px #000000;
+        }
+
+        .profession-tag.engineer { background: #00aaff; color: #ffffff; }
+        .profession-tag.designer { background: #ff3366; color: #ffffff; }
+        .profession-tag.chef { background: #00ff88; color: #000000; }
+        .profession-tag.teacher { background: #ff8800; color: #ffffff; }
+        .profession-tag.marketer { background: #aa00ff; color: #ffffff; }
+
+        .opinion-author {
+            font-weight: 700;
+            font-size: 16px;
+            color: #000000;
+        }
+
+        .opinion-text {
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        .opinion-quote {
+            background: #f9f9f9;
+            border-left: 4px solid;
+            padding: 15px 20px;
+            margin: 15px 0;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .engineer .opinion-quote { border-color: #00aaff; }
+        .designer .opinion-quote { border-color: #ff3366; }
+        .chef .opinion-quote { border-color: #00ff88; }
+        .teacher .opinion-quote { border-color: #ff8800; }
+        .marketer .opinion-quote { border-color: #aa00ff; }
+
+        /* 発見セクション */
+        .discoveries {
+            background: #00ff88;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .discoveries-title {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #000000;
+        }
+
+        .discovery-item {
+            background: #ffffff;
+            border: 2px solid #000000;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            box-shadow: 2px 2px 0px #000000;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .discovery-item::before {
+            content: "💡 ";
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        /* サイドバー */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-section {
+            background: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 25px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #000000;
+            padding-bottom: 10px;
+        }
+
+        .related-item {
+            padding: 15px 0;
+            border-bottom: 2px solid #f0f0f0;
+            transition: all 0.1s ease;
+            cursor: pointer;
+        }
+
+        .related-item:hover {
+            background: #ffff00;
+            margin: 0 -25px;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .related-title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 5px;
+        }
+
+        .related-meta {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666666;
+            text-transform: uppercase;
+        }
+
+        .share-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .share-btn {
+            background: #000000;
+            color: #ffffff;
+            padding: 12px 20px;
+            border: 2px solid #ff3366;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px #ff3366;
+            transition: all 0.1s ease;
+            font-size: 12px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .share-btn:hover {
+            background: #ff3366;
+            transform: translate(-1px, -1px);
+            box-shadow: 3px 3px 0px #ffff00;
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            background: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .comment-item {
+            border-bottom: 2px solid #f0f0f0;
+            padding: 20px 0;
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .commenter-name {
+            font-weight: 900;
+            font-size: 14px;
+            margin-right: 15px;
+        }
+
+        .comment-profession {
+            padding: 3px 8px;
+            border: 1px solid #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 9px;
+            box-shadow: 1px 1px 0px #000000;
+        }
+
+        .comment-text {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: #333333;
+        }
+
+        /* フッター */
+        .footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 4px solid #ff3366;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .article-title {
+                font-size: 32px;
+            }
+            
+            .opinion-card {
+                transform: none !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            
+            .article-header {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">CROSS SPARK</div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">HOME</a>
+                <a href="#" class="nav-item">BUG REPORTS</a>
+                <a href="#" class="nav-item">SUBMIT</a>
+                <a href="#" class="nav-item">ABOUT</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- パンくずリスト -->
+    <nav class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="#">HOME</a> > <a href="#">BUG REPORTS</a> > <span>美しさとは何か？</span>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="main-container">
+        <div class="content-area">
+            <!-- 記事ヘッダー -->
+            <div class="article-header">
+                <div class="article-category">予想外の発見</div>
+                <h1 class="article-title">美しさとは何か？</h1>
+                <p class="article-subtitle">5つの異なる業種が語る「美」の定義から見えてきた驚きの共通点</p>
+                <div class="article-meta">
+                    <span>公開: 2024.01.15</span>
+                    <span>参加者: 5業種</span>
+                    <span>閲覧: 1,247回</span>
+                </div>
+            </div>
+
+            <!-- 参加者 -->
+            <div class="participants">
+                <h2 class="participants-title">参加メンバー</h2>
+                <div class="participant-list">
+                    <div class="participant engineer">エンジニア</div>
+                    <div class="participant designer">デザイナー</div>
+                    <div class="participant chef">料理人</div>
+                    <div class="participant teacher">教師</div>
+                    <div class="participant marketer">マーケター</div>
+                </div>
+            </div>
+
+            <!-- 意見セクション -->
+            <section class="opinions-section">
+                <h2 class="section-title">各業種の視点</h2>
+                
+                <div class="opinion-card engineer">
+                    <div class="opinion-header">
+                        <div class="profession-tag engineer">ENGINEER</div>
+                        <div class="opinion-author">田中 健一（フルスタックエンジニア）</div>
+                    </div>
+                    <p class="opinion-text">
+                        美しいコードは「シンプルで理解しやすく、拡張性がある」こと。無駄がなく、他の人が読んでも直感的に分かる。美しさとは効率性と可読性の完璧な調和だと思う。
+                    </p>
+                    <div class="opinion-quote">
+                        「装飾は一切いらない。本当に美しいコードは、その構造だけで語りかけてくる」
+                    </div>
+                    <p class="opinion-text">
+                        リファクタリングを重ねて、最終的に必要最小限のコードで最大の機能を実現できた時の達成感。それが僕にとっての美しさです。
+                    </p>
+                </div>
+
+                <div class="opinion-card designer">
+                    <div class="opinion-header">
+                        <div class="profession-tag designer">DESIGNER</div>
+                        <div class="opinion-author">佐藤 美咲（UIデザイナー）</div>
+                    </div>
+                    <p class="opinion-text">
+                        美しさは感情を動かすもの。見た瞬間に「あ、素敵」と思わせる何か。バランス、色彩、余白...全てが調和して初めて美が生まれる。
+                    </p>
+                    <div class="opinion-quote">
+                        「最近はあえて不完全さに美しさを感じることも。完璧すぎると人間味がなくなる」
+                    </div>
+                    <p class="opinion-text">
+                        ユーザーが使いやすいだけでなく、使っていて気持ちいいと感じるデザイン。機能美と感性美の両立が、デザイナーとしての理想です。
+                    </p>
+                </div>
+
+                <div class="opinion-card chef">
+                    <div class="opinion-header">
+                        <div class="profession-tag chef">CHEF</div>
+                        <div class="opinion-author">山田 大輔（フレンチシェフ）</div>
+                    </div>
+                    <p class="opinion-text">
+                        料理の美しさは「旬の素材を活かすこと」。見た目の美しさも大切だけど、それは味と香りがあってこそ。本当に美しい料理は、食べた人の記憶に残る。
+                    </p>
+                    <div class="opinion-quote">
+                        「五感全てで感じる美しさ。それが料理の持つ独特な魅力だと思います」
+                    </div>
+                    <p class="opinion-text">
+                        素材の持つ自然な色合いや形を尊重しながら、それを最大限に引き出す技術。派手な装飾よりも、素材の本質を表現することが真の美しさかもしれません。
+                    </p>
+                </div>
+
+                <div class="opinion-card teacher">
+                    <div class="opinion-header">
+                        <div class="profession-tag teacher">TEACHER</div>
+                        <div class="opinion-author">鈴木 和子（小学校教師）</div>
+                    </div>
+                    <p class="opinion-text">
+                        子どもたちの「分かった！」という瞬間の表情が一番美しい。美しさとは成長や発見の瞬間に宿るもの。完璧さよりも、そこに向かう過程や努力に美しさを感じます。
+                    </p>
+                    <div class="opinion-quote">
+                        「間違いを恐れずに挑戦する姿、それ自体が美しい」
+                    </div>
+                    <p class="opinion-text">
+                        教育現場では、結果よりもプロセスを重視します。一生懸命考えて、失敗して、また挑戦する。その繰り返しの中にこそ、人間の美しさがあると思います。
+                    </p>
+                </div>
+
+                <div class="opinion-card marketer">
+                    <div class="opinion-header">
+                        <div class="profession-tag marketer">MARKETER</div>
+                        <div class="opinion-author">高橋 直人（デジタルマーケター）</div>
+                    </div>
+                    <p class="opinion-text">
+                        美しいキャンペーンは「ターゲットに刺さる」もの。データと感性の両方が必要。美しさは主観的だけど、多くの人に響く普遍性もある。
+                    </p>
+                    <div class="opinion-quote">
+                        「その絶妙なバランスが美しさの正体かも。計算と直感の融合」
+                    </div>
+                    <p class="opinion-text">
+                        KPIを追いながらも、人の心を動かす何かを作り出す。数値で測れない価値と、測定可能な成果を両立させること。それがマーケターにとっての美しさです。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 発見セクション -->
+            <div class="discoveries">
+                <h2 class="discoveries-title">ここからの発見</h2>
+                <div class="discovery-item">
+                    <strong>共通点：調和・バランス</strong><br>
+                    全員が「調和・バランス」について言及している。分野は違えど、美しさの根本は同じなのかもしれない。
+                </div>
+                <div class="discovery-item">
+                    <strong>本質への回帰</strong><br>
+                    エンジニアの「無駄がない」と料理人の「素材を活かす」は本質的に同じことを言っている。装飾を削ぎ落とし、本質を見極める視点。
+                </div>
+                <div class="discovery-item">
+                    <strong>プロセスの美学</strong><br>
+                    教師だけが「プロセス」に美しさを見出している。これは新しい視点。結果ではなく過程に価値を見出す考え方。
+                </div>
+                <div class="discovery-item">
+                    <strong>不完全さの価値</strong><br>
+                    デザイナーが「不完全さの美」を挙げたのは興味深い。完璧≠美しさという新しい美意識の台頭？
+                </div>
+                <div class="discovery-item">
+                    <strong>感性と論理の融合</strong><br>
+                    マーケターの「データと感性の両方」は、現代の美しさを表現している。科学的アプローチと直感的判断の共存。
+                </div>
+            </div>
+
+            <!-- コメントセクション -->
+            <div class="comments-section">
+                <h2 class="sidebar-title">読者の反応</h2>
+                
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="commenter-name">ARCHITECT_YUKI</div>
+                        <div class="comment-profession designer">建築家</div>
+                    </div>
+                    <p class="comment-text">
+                        建築でも「素材を活かす」は重要。料理人さんの意見にすごく共感しました。自然の美しさを人工的に再現するのではなく、自然そのものを活かす設計を心がけています。
+                    </p>
+                </div>
+
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="commenter-name">MUSICIAN_TAKE</div>
+                        <div class="comment-profession teacher">音楽家</div>
+                    </div>
+                    <p class="comment-text">
+                        音楽でも「間」や「余白」が重要。デザイナーさんの言う余白の美しさは、音楽の休符と同じかも。何もない部分にこそ、美しさが宿る。
+                    </p>
+                </div>
+
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="commenter-name">STARTUP_CEO</div>
+                        <div class="comment-profession marketer">起業家</div>
+                    </div>
+                    <p class="comment-text">
+                        ビジネスモデルにも美しさってあると思う。シンプルで理解しやすく、でも奥が深い。エンジニアさんの「効率性と可読性の調和」は、事業設計にも通じます。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- サイドバー -->
+        <aside class="sidebar">
+            <!-- 関連記事 -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">関連するバグレポート</h3>
+                
+                <div class="related-item">
+                    <div class="related-title">創造性を育む環境とは？</div>
+                    <div class="related-meta">4業種参加 - 爆発的成果</div>
+                </div>
+                
+                <div class="related-item">
+                    <div class="related-title">シンプルさと複雑さの境界線</div>
+                    <div class="related-meta">3業種参加 - 実験進行中</div>
+                </div>
+                
+                <div class="related-item">
+                    <div class="related-title">なぜ人は物語を求めるのか？</div>
+                    <div class="related-meta">6業種参加 - 予想外の発見</div>
+                </div>
+            </div>
+
+            <!-- シェアボタン -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Share This</h3>
+                <div class="share-buttons">
+                    <a href="#" class="share-btn">Twitter</a>
+                    <a href="#" class="share-btn">Facebook</a>
+                    <a href="#" class="share-btn">LinkedIn</a>
+                    <a href="#" class="share-btn">Copy Link</a>
+                </div>
+            </div>
+
+            <!-- 参加への誘導 -->
+            <div class="sidebar-section" style="background: #ff3366; color: #ffffff;">
+                <h3 class="sidebar-title" style="color: #ffff00; border-color: #ffff00;">Join Discussion</h3>
+                <p style="font-weight: 600; margin-bottom: 15px; font-size: 14px; line-height: 1.4;">
+                    あなたの業種の視点も聞かせてください！新しい話題を提案したり、進行中の議論に参加したりできます。
+                </p>
+                <a href="#" class="share-btn" style="background: #ffff00; color: #000000; border-color: #000000;">
+                    投稿する
+                </a>
+            </div>
+        </aside>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-text">
+            CROSS SPARK - 異業種の化学反応から生まれる新しい発見
+        </div>
+    </footer>
+
+    <script>
+        // 付箋風カードのインタラクション
+        document.addEventListener('DOMContentLoaded', function() {
+            const opinionCards = document.querySelectorAll('.opinion-card');
+            
+            opinionCards.forEach((card, index) => {
+                const originalTransform = getComputedStyle(card).transform;
+                
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = `rotate(0deg) translate(-${Math.random() * 3}px, -${Math.random() * 3}px)`;
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    // 元の回転に戻す
+                    const rotations = ['-0.8deg', '0.5deg', '-0.3deg', '0.7deg', '-0.6deg'];
+                    const margins = ['15px', '20px', '10px', '15px', '5px'];
+                    const sides = ['margin-right', 'margin-left', 'margin-right', 'margin-left', 'margin-right'];
+                    
+                    if (index < rotations.length) {
+                        this.style.transform = `rotate(${rotations[index]})`;
+                        this.style[sides[index]] = margins[index];
+                        this.style.zIndex = '1';
+                    }
+                });
+            });
+
+            // 関連記事のホバーエフェクト
+            const relatedItems = document.querySelectorAll('.related-item');
+            relatedItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = `translateX(${Math.random() * 2}px)`;
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+
+            // シェアボタンの機能
+            const shareButtons = document.querySelectorAll('.share-btn');
+            shareButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.textContent.toLowerCase();
+                    
+                    if (platform === 'copy link') {
+                        navigator.clipboard.writeText(window.location.href);
+                        alert('リンクをコピーしました！');
+                    } else {
+                        alert(`${platform}でシェアします！`);
+                    }
+                });
+            });
+
+            // スムーズスクロール
+            const participantTags = document.querySelectorAll('.participant');
+            participantTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const profession = this.classList[1];
+                    const targetCard = document.querySelector(`.opinion-card.${profession}`);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                        // ハイライト効果
+                        targetCard.style.background = '#ffff00';
+                        setTimeout(() => {
+                            targetCard.style.background = '#ffffff';
+                        }, 1000);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+/* Container */
+.articleContainer {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0px #ff3366;
+  padding: 40px 30px;
+}
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+.categoryTag {
+  background: #ffff00;
+  color: #000;
+  padding: 6px 18px;
+  border: 2.5px solid #000;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+  box-shadow: 2px 2px 0px #ff3366;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.title {
+  font-size: 28px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #ff3366;
+  text-shadow: 2px 2px 0px #000;
+  margin-bottom: 10px;
+}
+.subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+.meta {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #666;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 900;
+  color: #000;
+  text-transform: uppercase;
+  border-left: 8px solid #ff3366;
+  padding-left: 12px;
+  margin-bottom: 12px;
+}
+
+.membersSection {
+  margin-bottom: 24px;
+}
+.memberTags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.memberTag {
+  padding: 4px 14px;
+  border: 2.5px solid #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  box-shadow: 1px 1px 0px #000;
+  border-radius: 2px;
+}
+
+.opinionsSection {
+  margin-bottom: 32px;
+}
+.opinionCards {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.opinionCard {
+  min-width: 140px;
+  max-width: 180px;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0px #ff3366;
+  padding: 18px 14px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 8px 24px 8px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.18s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0.2, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.opinionCard:hover {
+  transform: scale(1.06) rotate(0deg) translateY(-4px);
+  box-shadow: 12px 12px 0px #00ff88;
+  z-index: 2;
+}
+.opinionRole {
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 0px #fff;
+}
+.opinionText {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.discoverySection {
+  margin-bottom: 0;
+}
+.discoveryList {
+  margin-top: 10px;
+  padding-left: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff3366;
+}
+.discoveryList li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.contentSection {
+  margin: 36px 0 0 0;
+  padding: 24px 18px;
+  background: #f0f0f0;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #ff3366;
+  border-radius: 12px;
+}
+.contentHeading {
+  font-size: 17px;
+  font-weight: 900;
+  color: #ff3366;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  text-shadow: 1px 1px 0px #fff;
+}
+.contentText {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .articleContainer {
+    padding: 18px 4px;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .sectionTitle {
+    font-size: 15px;
+    padding-left: 8px;
+  }
+  .opinionCards {
+    gap: 8px;
+  }
+  .opinionCard {
+    min-width: 100px;
+    max-width: 100%;
+    padding: 10px 6px;
+  }
+} 

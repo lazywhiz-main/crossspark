@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT - CROSS SPARK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: #f0f0f0;
+            color: #000000;
+            line-height: 1.4;
+        }
+
+        /* ヘッダー */
+        .header {
+            background: #000000;
+            padding: 16px 0;
+            box-shadow: 4px 4px 0px #ff3366;
+            border-bottom: 3px solid #ff3366;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ff3366;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 0px #ffffff;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 6px;
+        }
+
+        .nav-item {
+            background: #ffff00;
+            border: 2px solid #000000;
+            padding: 8px 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #000000;
+            box-shadow: 2px 2px 0px #000000;
+            transition: all 0.1s ease;
+            letter-spacing: 1px;
+            font-size: 12px;
+        }
+
+        .nav-item:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0px #000000;
+            background: #00ff88;
+        }
+
+        .nav-item.active {
+            background: #00ff88;
+        }
+
+        /* ページヘッダー */
+        .page-header {
+            background: #000000;
+            color: #ffffff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 64px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0px #ff3366;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffff00;
+        }
+
+        /* メインコンテンツ */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* ミッション */
+        .mission-section {
+            background: #ffff00;
+            border: 6px solid #000000;
+            box-shadow: 8px 8px 0px #000000;
+            padding: 50px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .mission-title {
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: #000000;
+        }
+
+        .mission-text {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.6;
+            color: #000000;
+        }
+
+        /* コンセプト */
+        .concept-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #000000;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .concept-card {
+            background: #ffffff;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            padding: 30px;
+            text-align: center;
+            transform: rotate(-1deg);
+            transition: all 0.2s ease;
+        }
+
+        .concept-card:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .concept-card:hover {
+            transform: rotate(0deg) translate(-2px, -2px);
+            box-shadow: 8px 8px 0px #000000;
+        }
+
+        .concept-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .concept-title {
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #000000;
+        }
+
+        .concept-description {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        /* プロセス */
+        .process-section {
+            background: #00ff88;
+            border: 4px solid #000000;
+            box-shadow: 6px 6px 0px #000000;
+            padding: 50px;
+            margin-bottom: 80px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step-item {
+            background: #ffffff;
+            border: 3px solid #000000;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 3px 3px 0px #000000;
+        }
+
+        .step-number {
+            background: #ff3366;
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            margin: 0 auto 15px;
+            box-shadow: 2px 2px 0px #000000;
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* FAQ */
+        .faq-section {
+            margin-bottom: 80px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 3px solid #000000;
+            box-shadow: 4px 4px 0px #000000;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #ff3366;
+            color: #ffffff;
+            padding: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: "+";
+            position: absolute;
+            right: 20px;
+            font-size: 24px;
+            transition: transform 0.2s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* 統計 */
+        .stats-section {
+            background: #000000;
+            color: #ffffff;
+            padding: 60px;
+            text-align: center;
+            border: 4px solid #ff3366;
+            box-shadow: 6px 6px 0px #ff3366;
+            margin-bottom: 80px;
+        }
+
+        .stats-title {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: #ffff00;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+            border: 3px solid #ffff00;
+            background: rgba(255, 255, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            display: block;
+            color: #ffff00;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: #ff3366;
+            color: #ffffff;
+            padding: 60px;
+            text-align: center;
+            border: 4px solid #000000;
+            box-shadow: 8px 8px 0px #000000;
+            margin-bottom: 60px;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            background: #ffff00;
+            color: #000000;
+            padding: 20px 40px;
+            border: 4px solid #000000;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 18px;
+            letter-spacing: 2px;
+            box-shadow: 6px 6px 0px #000000;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px #000000;
+        }
+
+        /* フッター */
+        .footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 40px 0;
+            border-top: 4px solid #ff3366;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .concept-card {
+                transform: none;
+            }
+            
+            .mission-section,
+            .process-section,
+            .stats-section,
+            .cta-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">CROSS SPARK</div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">HOME</a>
+                <a href="#" class="nav-item">BUG REPORTS</a>
+                <a href="#" class="nav-item">SUBMIT</a>
+                <a href="#" class="nav-item active">ABOUT</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ページヘッダー -->
+    <section class="page-header">
+        <h1 class="page-title">ABOUT</h1>
+        <p class="page-subtitle">化学反応の実験室</p>
+    </section>
+
+    <!-- メインコンテンツ -->
+    <main class="main-container">
+        <!-- ミッション -->
+        <section class="mission-section">
+            <h2 class="mission-title">Our Mission</h2>
+            <p class="mission-text">
+                「バグを起こしたい！」<br>
+                異業種で働く、各々異なるスキルセットの人たちが集まったときの化学反応が見たい！<br>
+                そんな想いから生まれたのがCROSS SPARKです。
+            </p>
+        </section>
+
+        <!-- コンセプト -->
+        <section class="concept-section">
+            <h2 class="section-title">What We Do</h2>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <span class="concept-icon">🔬</span>
+                    <h3 class="concept-title">実験する</h3>
+                    <p class="concept-description">
+                        一つの話題に対して異なる業種の人々が議論することで、予想もしない化学反応を観察します
+                    </p>
+                </div>
+
+                <div class="concept-card">
+                    <span class="concept-icon">💡</span>
+                    <h3 class="concept-title">発見する</h3>
+                    <p class="concept-description">
+                        業界の枠を超えた視点の交換から、誰も気づかなかった新しい発見や洞察を生み出します
+                    </p>
+                </div>
+
+                <div class="concept-card">
+                    <span class="concept-icon">🚀</span>
+                    <h3 class="concept-title">共有する</h3>
+                    <p class="concept-description">
+                        生まれた化学反応とその結果をバグレポートとして記録し、みんなで学びを共有します
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロセス -->
+        <section class="process-section">
+            <h2 class="section-title" style="color: #000000;">How It Works</h2>
+            <div class="process-steps">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">話題設定</h3>
+                    <p class="step-description">哲学的で普遍的なテーマを設定</p>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">多様な参加</h3>
+                    <p class="step-description">異なる業種から参加者を募集</p>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">視点交換</h3>
+                    <p class="step-description">各業種の視点から意見を交換</p>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">化学反応</h3>
+                    <p class="step-description">予想外の発見や洞察が生まれる</p>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">レポート化</h3>
+                    <p class="step-description">結果をバグレポートとして公開</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <h2 class="section-title">FAQ</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    バグレポートって何ですか？
+                </div>
+                <div class="faq-answer">
+                    異業種の人々が一つの話題について議論した結果をまとめたレポートです。IT業界の「バグレポート」になぞらえ、従来の常識や思考パターンの「バグ」を発見・報告するという意味で名付けました。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    どんな人が参加できますか？
+                </div>
+                <div class="faq-answer">
+                    どんな業種・職業の方でも参加できます。重要なのは専門性ではなく、あなた独自の視点と経験です。学生、主婦、フリーランス、会社員など、すべての人が価値ある意見を持っています。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    参加するのに費用はかかりますか？
+                </div>
+                <div class="faq-answer">
+                    CROSS SPARKは完全無料です。新しい発見を共有し、みんなで学び合うことが目的であり、営利を目的としていません。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    どんな話題が扱われますか？
+                </div>
+                <div class="faq-answer">
+                    「美しさとは何か？」「創造性とは何か？」「コミュニケーションの本質とは？」など、業種を問わず議論できる哲学的・普遍的なテーマを扱います。正解のない、多様な視点が価値を持つ話題です。
+                </div>
+            </div>
+        </section>
+
+        <!-- 統計 -->
+        <section class="stats-section">
+            <h2 class="stats-title">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">47</span>
+                    <div class="stat-label">公開済み<br>バグレポート</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">156</span>
+                    <div class="stat-label">参加者総数</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">23</span>
+                    <div class="stat-label">参加業種数</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">89</span>
+                    <div class="stat-label">新たな発見</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <h2 class="cta-title">Join The Experiment</h2>
+            <p class="cta-description">
+                あなたも化学反応の一部になりませんか？<br>
+                新しい話題を提案するか、既存の議論に参加して、<br>
+                業界の枠を超えた発見を一緒に楽しみましょう。
+            </p>
+            <a href="#" class="cta-button">今すぐ参加する</a>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-text">
+            CROSS SPARK - 異業種の化学反応から生まれる新しい発見
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+            
+            // すべてのFAQを閉じる
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+                q.nextElementSibling.classList.remove('active');
+            });
+            
+            // クリックされたFAQを開く（既に開いていた場合は閉じる）
+            if (!isActive) {
+                element.classList.add('active');
+                answer.classList.add('active');
+            }
+        }
+
+        // カードのホバーエフェクト
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.concept-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = `rotate(0deg) translate(-${Math.random() * 3}px, -${Math.random() * 3}px)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const isEven = Array.from(cards).indexOf(this) % 2 === 1;
+                    this.style.transform = isEven ? 'rotate(1deg)' : 'rotate(-1deg)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

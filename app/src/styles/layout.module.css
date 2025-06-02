@@ -1,0 +1,150 @@
+.header {
+  background: #000000;
+  padding: 16px 0;
+  box-shadow: 4px 4px 0px #ff3366;
+  border-bottom: 3px solid #ff3366;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ff3366;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  padding: 16px 24px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 900;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 0px #ffffff;
+  text-decoration: none;
+}
+
+.navMenu {
+  display: flex;
+  gap: 6px;
+}
+
+.navItem {
+  background: #ffff00;
+  border: 2px solid #000000;
+  padding: 8px 16px;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000000;
+  box-shadow: 2px 2px 0px #000000;
+  transition: all 0.1s ease;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.navItem:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px #000000;
+  background: #00ff88;
+}
+
+.main {
+  min-height: calc(100vh - 200px);
+  padding: 20px;
+}
+
+.footer {
+  background: #000000;
+  color: #ffffff;
+  padding: 40px 0;
+  border-top: 4px solid #ff3366;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.footerText {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1024px) {
+  .headerContainer {
+    padding: 12px 20px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .navItem {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerContainer {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .navMenu {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navItem {
+    font-size: 10px;
+    padding: 6px 10px;
+    width: 100%;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerContainer {
+    padding: 8px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .navMenu {
+    gap: 4px;
+  }
+
+  .navItem {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+
+  .footer {
+    padding: 20px 0;
+  }
+
+  .footerText {
+    font-size: 12px;
+  }
+} 

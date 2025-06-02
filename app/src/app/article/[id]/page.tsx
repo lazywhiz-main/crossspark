@@ -44,15 +44,7 @@ function safeText(val: string | number | Member | string[] | undefined | null): 
   return '';
 }
 
-// Next.jsのPageProps型を利用
-type PageProps = {
-  params: {
-    id: string;
-    [key: string]: string;
-  };
-};
-
-export default async function ArticleDetailPage({ params }: PageProps) {
+export default async function ArticleDetailPage({ params }: { params: { id: string } }) {
   const article = await fetchArticle(params.id);
   if (!article) return notFound();
 

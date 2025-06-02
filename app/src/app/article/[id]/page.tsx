@@ -44,7 +44,8 @@ function safeText(val: string | number | Member | string[] | undefined | null): 
   return '';
 }
 
-export default async function ArticleDetailPage({ params }: { params: { id: string } }) {
+// @ts-expect-error Next.js App Router params型は自動推論
+export default async function ArticleDetailPage({ params }) {
   const article = await fetchArticle(params.id);
   if (!article) return notFound();
 
